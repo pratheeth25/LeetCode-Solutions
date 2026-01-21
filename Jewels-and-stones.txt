@@ -1,0 +1,19 @@
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        int count = 0;
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char c:jewels.toCharArray()){
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        for(char c:stones.toCharArray()){
+            if(map.containsKey(c)){
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+here check if stones contain jewel stones 
+jewel stones can be repeated for example AA is jewels and aAAbb is stones then AA is considered
+
