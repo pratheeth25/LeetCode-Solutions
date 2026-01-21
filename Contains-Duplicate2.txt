@@ -1,1 +1,40 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer,Integer> map  = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int a = nums[i];
+            if(map.containsKey(a)){
+                if(i-map.get(a) <= k){
+                    return true;
+                }
+            }
+            map.put(a,i);
+        }
+        return false;
+    }
+}
+
+Standard HashMap approach
+Here we use a hashmap to store value and its index 
+When hashmap alreday has a key for example 1 check its value and dry run given <= k condition 
+Update latest index of a number this is the reason my previous code was misssing 
+Dry-Run
+ex = [1,2,3,1] k = 2
+first 1,0 2,1 and 3,2 is created and then 3-0 <= 2 is not satisfied 
+so it updates it value to for 1 its latest index
+
+
+HashSet + Sliding Window Solution
+
+ Set<Integer> set = new HashSet<Integer>();
+        for(int i = 0; i < nums.length; i++){
+            if(i > k) set.remove(nums[i-k-1]);
+            if(!set.add(nums[i])) return true;
+        }
+        return false;
+
+set.add() returns false when an element is already present in the set 
+so when i <= k and and element is already present then return true bcz duplicate is detected
+
+till we get window of k we add to set and remove if i > k to limit no of elements in the window
 
