@@ -1,0 +1,26 @@
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        PriorityQueue<Map.Entry<Integer,Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue() -a.getValue()); // Comparators
+        for(int a:nums){
+            map.put(a,map.getOrDefault(a,0)+1);
+        }
+        pq.addAll(map.entrySet());
+        int[] ans = new int[k];
+        for(int i=0;i<k;i++){
+            ans[i] = pq.poll().getKey();
+        }
+        return ans;
+    }
+}
+
+This solution is more java oriented than mathematical approach.
+First we make the hashmap and then we use heap of key value pair and store using comparators
+
+and then hard-coding the problem statement 
+
+Not optimal solution 
+
+
+Most optimal solution is bucket sort 
+which yields O(n) solution
