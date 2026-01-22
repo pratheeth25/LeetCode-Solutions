@@ -1,0 +1,30 @@
+class Solution {
+    public int longestPalindrome(String s) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int len = 0;
+        boolean hasOdd = false;
+
+        for (int freq : map.values()) {
+            if (freq % 2 == 0) {
+                len += freq;
+            } else {
+                len += freq - 1; 
+                hasOdd = true;     
+            }
+        }
+
+        if (hasOdd) len += 1; 
+
+        return len;
+    }
+}
+
+Main important point here is to get even amount in odd amaount of characters 
+why is that bcz for example bbbbb we can make palindrome of bbbb and hasOdd variable stores the presence of odd b in it
+Later we can add it to hasOdd and length to give final answer
