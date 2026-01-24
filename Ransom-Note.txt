@@ -1,0 +1,23 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character,Integer> map1 = new HashMap<>();
+        HashMap<Character,Integer> map2 = new HashMap<>();
+        for(char c:ransomNote.toCharArray()){
+            map1.put(c,map1.getOrDefault(c,0)+1);
+        }
+        for(char c:magazine.toCharArray()){
+            map2.put(c,map2.getOrDefault(c,0)+1);
+        }
+        for(char c:map1.keySet()){
+            if(!map2.containsKey(c)){
+                return false;
+            }else{
+                if(map1.get(c) > map2.get(c))return false;
+            }
+            
+        }
+        return true;   
+    }
+}
+
+Standard Solution calculate freq of both strings and then if some char is not present in map2 but present in map1 return false and also if freq of char in map1 > map2 then also return false;
