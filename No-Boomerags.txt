@@ -1,0 +1,29 @@
+class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        int res = 0;
+        for(int i=0;i<points.length;i++){
+            HashMap<Integer,Integer> map = new HashMap<>();
+            for(int j=0;j<points.length;j++){
+                if(i == j)continue;
+                int dx = points[i][0] - points[j][0];
+                int dy = points[i][1] - points[j][1];
+                int dist = dx*dx + dy*dy;
+                map.put(dist,map.getOrDefault(dist,0)+1);
+            }
+            for(int c:map.values()){
+                res += c*(c-1);
+            }
+        }
+        return res;
+    }
+}
+
+Its more of a math problem than hashmaps 
+main here is why c*(c-1) and adding to res
+we are calculating total no so for each point no of boomerags is calculated and then added
+
+Why c*(c-1)
+suppose a point has 3 equal distance points so ans will be 6 
+it is bcz we take direction here and order matters so total no of equal distace * (remaining points excluding given point thats why -1)
+
+
