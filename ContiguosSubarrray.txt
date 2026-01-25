@@ -1,0 +1,34 @@
+class Solution {
+    public int findMaxLength(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0,-1);
+        int count = 0;
+        int ans = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] == 0){
+                count--;
+            }else{
+                count++;
+            }
+            if(map.containsKey(count)){
+                ans = Math.max(ans,i-map.get(count));
+            }else{
+                map.put(count,i);
+            }
+        }
+        
+        return ans;
+    }
+}
+The solution is highly not intuitive I cannot get or even think about it in first place so 
+I watched some tutorials to solve this problems 
+
+Why prefix sum - > to keep track of balance
+Why HashMap -> differnce to index so when 0 appers means equal no of 
+We use map.put(0, -1) as a base case to represent that before the array starts (at a virtual index -1), the prefix count is 0,
+so when the running count becomes 0 at some index i, it means the subarray from index 0 to i is balanced, and the length can be correctly calculated as i - (-1) = i + 1;
+without this base case, subarrays that start
+at index 0 would never be detected, because there would be no previous 0 count stored in the map to compare against.
+ ans = Math.max(ans,i-map.get(count)); -> bcz we want first index where equal no zeros and 1s has occured 
+
+
