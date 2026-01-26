@@ -1,0 +1,20 @@
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+       List<Integer> ans = new ArrayList<>();
+       for(int i=0;i<nums.length;i++){
+        ans.add(index[i],nums[i]);
+       }
+       int[] tar = new int[nums.length];
+       for(int i=0;i<nums.length;i++){
+        tar[i] = ans.get(i);
+       }
+        return tar;
+    }
+}
+Here problem in using array is when we have add at index 2 when element is already is present to move right of the array
+Which is why we use arrayList to solve this 
+when ans.add(2,5);
+is given elemnets from index 2 move right side 
+
+thats why 
+So time and space complexity is O(N):
