@@ -1,0 +1,15 @@
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int[] ans = new int[2*n];
+        int in = 0;
+        for(int i=0;i<n;i++){
+            ans[in] = nums[i];
+            in++;
+            ans[in] = nums[n+i];
+            in++;
+        }
+        return ans;
+    }
+}
+Standard Two pointer approach 
+here instead we increment in two times instead of two pointers
