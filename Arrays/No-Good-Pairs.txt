@@ -1,0 +1,19 @@
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int a:nums){
+            map.put(a,map.getOrDefault(a,0)+1);
+        }
+        int c = 0;
+        for(int a:map.keySet()){
+            int n = map.get(a);
+            if(n > 1){
+                int q = n * (n-1) / 2;
+                c = c + q;
+            }
+        }
+        return c;
+    }
+}
+I thought of integer-> index map but it fails bcz when 1,1,1,1 appears then we cant keep track of previous index 
+So use n*(n-1) / 2 formula when c > 1 for each element
