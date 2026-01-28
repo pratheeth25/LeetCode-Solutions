@@ -1,0 +1,22 @@
+class Solution {
+    public int[][] construct2DArray(int[] original, int m, int n) {
+        if(original.length != m*n){
+            return new int[0][0];
+        }
+        int[][] res = new int[m][n];
+        int t1 = 0;
+        int t2 = 0;
+        
+        
+        for(int i=0;i<original.length;i++){
+            res[t1][t2] = original[i];
+            t2++;
+            if(t2 == n){
+                t2 = 0;
+                t1++;
+            }
+        }
+        return res;
+    }
+}
+bets O(N) solution
