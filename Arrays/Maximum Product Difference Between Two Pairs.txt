@@ -1,0 +1,9 @@
+class Solution {
+    public int maxProductDifference(int[] nums) {
+        Arrays.sort(nums);
+
+        return nums[nums.length-1] * nums[nums.length-2] - nums[0] * nums[1];
+    }
+}
+Here Whenever Max pair or min pair is required sort the array so it becomes easier
+and specifcally asked to use 4 numbers so answer is straight forward.
