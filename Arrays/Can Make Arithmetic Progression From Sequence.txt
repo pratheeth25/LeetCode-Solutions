@@ -1,0 +1,44 @@
+class Solution {
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        Arrays.sort(arr);
+        for(int i=1;i<arr.length-1;i++){
+            if(arr[i]-arr[i-1] != arr[i+1] - arr[i])return false;
+        }
+        return true;
+    }
+}
+
+Simple straight forward solution 
+
+
+class Solution {
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        int n = arr.length;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int x : arr){
+            min = Math.min(min, x);
+            max = Math.max(max, x);
+            set.add(x);
+        }
+
+        // If total range not divisible evenly
+        if((max - min) % (n - 1) != 0) return false;
+
+        int diff = (max - min) / (n - 1);
+
+        int curr = min;
+        for(int i = 0; i < n; i++){
+            if(!set.contains(curr)) return false;
+            curr += diff;
+        }
+
+        return true;
+    }
+}
+This is more optimised version 
+Why hashset bcz to avoid arrays where all elements are equal So
+Interesting approach curr += diff is the main logical perspective here .
