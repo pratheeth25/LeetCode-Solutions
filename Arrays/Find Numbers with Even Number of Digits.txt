@@ -1,0 +1,34 @@
+class Solution {
+    public int findNumbers(int[] nums) {
+        int c=0;
+        for(int i=0;i<nums.length;i++){
+            int temp=digits(nums[i]);
+            if(temp%2==0){
+                c++;
+            }
+        }
+        return c;
+    }
+    static int digits(int num){
+        if(num < 10){return 1;}
+        return 1+digits(num/10);
+    }
+}
+
+Here Recursion should not be used so 
+Use mathematical approach 
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        int c = 0;
+        for (int num : nums) {
+            int digits = (int)Math.log10(num) + 1;
+            if (digits % 2 == 0) c++;
+        }
+        return c;
+    }
+}
+Space and time complexity are both reduced to O(N) and O(1) respectively
+
+
+
