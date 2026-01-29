@@ -1,0 +1,31 @@
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        int ep = 0;
+        int op = nums.length-1;
+        while(ep < op){
+            if(nums[ep] % 2 == 1 && nums[op] % 2 == 0){
+                swap(nums,ep,op);
+                ep++;
+                op--;
+            }
+            if(nums[ep] % 2 == 0){
+                ep++;
+                
+            }
+            if(nums[op] % 2 == 1){
+                op--;
+            }
+           
+        }
+         return nums;
+    }
+    static void swap(int[] nums,int i,int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+
+Standard Two pointer apporach 
+Trick here is using two if statements else code will break . So keep in mind for that.
+
