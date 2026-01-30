@@ -1,0 +1,21 @@
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int[] res = new int[nums.length];
+        int l = 0;
+        int ri = nums.length-1;
+        int idx = nums.length-1;
+        while(l<=ri){
+            int le = nums[l] * nums[l];
+            int rig = nums[ri] * nums[ri];
+            if(le > rig){
+                res[idx--] = le;
+                l++;
+            }else{
+                res[idx--] = rig;
+                ri--;
+            }
+        }
+        return res;
+    }
+}
+Array is sorted so left < right we compare squares of left and right update index.
