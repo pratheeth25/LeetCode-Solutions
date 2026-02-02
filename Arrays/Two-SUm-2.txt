@@ -1,0 +1,24 @@
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int n = numbers.length;
+        int[] ans = new int[2];
+        int[] p = numbers;
+        int l = 0;
+        int r = n-1;
+        while(l < r){
+            if(p[l] + p[r] == target){
+                ans[0] = l + 1;
+                ans[1] = r + 1;
+                break;
+            }
+            if(p[l] + p[r] > target){
+                r--;
+            }else{
+                l++;
+            }
+        }
+        return ans;
+    }
+}
+Here trick is to identify the pointers 
+Array is sorted SO that is one of the hints.
