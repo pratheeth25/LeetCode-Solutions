@@ -1,0 +1,19 @@
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        if(image[sr][sc] == newColor)return image;
+        ccc(image,sr,sc,newColor,image[sr][sc]);
+        return image;
+        
+    }
+    static void ccc(int[][] mat,int sr,int sc,int newc,int oldc){
+        if(sr < 0 || sc < 0 || sr >= mat.length || sc >= mat[0].length || mat[sr][sc] != oldc) {
+            return;
+        }
+        mat[sr][sc] = newc;
+        ccc(mat,sr+1,sc,newc,oldc);
+        ccc(mat,sr-1,sc,newc,oldc);
+        ccc(mat,sr,sc+1,newc,oldc);
+        ccc(mat,sr,sc-1,newc,oldc);
+        
+    }
+}
