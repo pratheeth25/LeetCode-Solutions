@@ -1,0 +1,41 @@
+class Solution {
+    public int countIslands(char[][] grid) {
+        // Code here
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        boolean[][] vis = new boolean[m][n];
+        int c = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j] == 'L' && !vis[i][j]){
+                    dfs(grid,i,j,vis);
+                    c++;
+                }
+            }
+        }
+        return c;
+        
+    }
+    static boolean issafe(char[][] grid,int i,int j,int m,int n,boolean[][] vis){
+        return (i >=0 && i < m && j >=0 && j < n && grid[i][j] == 'L' && !vis[i][j]);
+    }
+    static void dfs(char[][] grid,int i,int j,boolean[][] vis){
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        vis[i][j] = true;
+        int[] dr = {-1,-1,-1,0,0,1,1,1};
+        int[] dc = {-1,0,1,-1,1,-1,0,1};
+        for(int k=0;k<8;k++){
+            int nr = i + dr[k];
+            int nc = j + dc[k];
+            if(issafe(grid,nr,nc,m,n,vis)){
+                dfs(grid,nr,nc,vis);
+            }
+        }
+    }
+}
+
+Here for diagonal traversal we take dr and dc as 8 elements 
+Else standard 4 co-ordinate approach is used.
