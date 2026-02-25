@@ -1,0 +1,55 @@
+class Solution {
+    public void fill(char[][] grid) {
+        // Code here
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j] == 'O')grid[i][j] = '-';
+            }
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i=0;i<grid.length;i++){
+            if(grid[i][0] == '-'){
+                ccc(grid,i,0,'-','O');
+            }
+            if(grid[i][n-1]== '-'){
+                ccc(grid,i,n-1,'-','O');
+            }
+        }
+        for(int j=0;j<grid[0].length;j++){
+            if(grid[0][j] == '-'){
+                ccc(grid,0,j,'-','O');
+            }
+            if(grid[m-1][j] == '-'){
+                ccc(grid,m-1,j,'-','O');
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j] == '-'){
+                    grid[i][j] = 'X';
+                }
+            }
+        }
+        
+        
+    }
+    static void ccc(char[][] grid,int x,int y,char prev,char ne){
+        int m = grid.length;
+        int n = grid[0].length;
+        if(x < 0 || x >=m || y < 0 || y >=n){
+            return;
+        }
+        if(grid[x][y] != prev){
+            return;
+        }
+        grid[x][y] = ne;
+        ccc(grid,x+1,y,prev,ne);
+        ccc(grid,x-1,y,prev,ne);
+        ccc(grid,x,y+1,prev,ne);
+        ccc(grid,x,y-1,prev,ne);
+    }
+}
+Here we first change O to - bcz of boundary condition 
+And then fill will O for boundary 
+So when non boundary - is present then replace with X
