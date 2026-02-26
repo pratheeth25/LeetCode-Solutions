@@ -1,0 +1,41 @@
+class Solution {
+    public int orangesRot(int[][] mat) {
+        // code here
+        int n = mat.length;
+        int m = mat[0].length;
+        Queue<int[]> q  = new LinkedList<>();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(mat[i][j] == 1){
+                    q.add(new int[]{i,j});
+                }
+            }
+        }
+        int[][] dirs = {{1,0},{0,1},{-1,0},{0,-1}}
+        int c = 0;
+        while(!q.isEmpty()){
+            int s = q.size();
+            boolean flag = false;
+            for(int i=0;i<q.size();i++){
+                int[] cell = q.poll();
+                int x = cell[0];
+                int y = cell[1];
+                for(int[] d:dirs){
+                    int nx = x + d[0];
+                    int ny = y + d[1];
+                    if(issafe(nx,ny,n,m) && mat[nx][ny] == 1){
+                        q.add(new int[]{nx.ny});
+                        mat[nx][ny] = 2;
+                        flag = true;
+                    }
+                }
+            }
+            if(flag)c++;
+        }
+        return c;
+    }
+    static boolean issafe(int i,int j,int n,int m){
+        return (i>=0 && i < n && j >=0 && j < m);
+    }
+    
+}
