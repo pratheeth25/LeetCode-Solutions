@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> p =new ArrayList<>();
+        ccc(ans,nums,0,p);
+        return ans;
+    }
+    static void ccc(List<List<Integer>> ans, int[] nums,int s,List<Integer> p){
+        ans.add(new ArrayList<>(p));
+        for(int i=s;i<nums.length;i++){
+            p.add(nums[i]);
+            ccc(ans,nums,i+1,p);
+            p.remove(p.size()-1);
+        }
+    }
+}
+
+
+Here for adding list to main list we need to use new keyword bcz we cant directly insert the list 
+Bcz it points to same object as prev recursion call so 
+Be careful about it.
