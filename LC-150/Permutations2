@@ -1,0 +1,34 @@
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        Arrays.sort(nums);
+  List<List<Integer>> ans = new ArrayList<>();
+        boolean[] used = new boolean[nums.length];
+        ccc(nums,ans,used,new ArrayList<>());
+        return ans;
+        
+        
+    }
+    static void ccc(int[] nums,List<List<Integer>> ans,boolean[] used,List<Integer> p){
+        if(p.size() == nums.length){
+            ans.add(new ArrayList<>(p));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(used[i]){
+                continue;
+            }
+            if(i > 0 && nums[i] == nums[i-1] && !used[i-1]){
+                continue;
+            }
+            used[i] = true;
+            p.add(nums[i]);
+            ccc(nums,ans,used,p);
+            p.remove(p.size() - 1);
+            used[i] = false;
+        }
+
+    }
+}
+This one is the hardest yet
+But similar to nums[i] == nums[i-1] pattern we use !used[i-1] bcz it repeats the same sequence as original
+i>0 bcz as a guard case
