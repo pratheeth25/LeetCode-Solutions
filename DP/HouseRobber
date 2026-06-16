@@ -1,0 +1,19 @@
+class Solution {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n+1];
+        Arrays.fill(dp,0);
+        dp[1] = nums[0];
+        for(int i=2;i<=n;i++){
+            dp[i] = Math.max(dp[i-1],nums[i-1]+dp[i-2]);
+        }
+        return dp[n];
+    }
+}
+
+Lets gooo 
+First DP problem 
+Looked at wrong answer got it 
+So its simple dp[i] gives maximum amt robbed 
+so either prev max or prev prev max + current amt 
+SO
