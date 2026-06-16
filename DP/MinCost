@@ -1,0 +1,20 @@
+import java.util.*;
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+      int n = cost.length;
+      int[] dp = new int[n+1];
+      dp[n] = 0;
+      dp[n-1] = cost[n-1];
+      for(int i=n-2;i>=0;i--){
+        dp[i] = cost[i] + Math.min(dp[i+1],dp[i+2]);
+      }
+      return Math.min(dp[0],dp[1]);
+    }
+
+
+WHy n+1 ?
+bcz n+1 is considered as top so to reach top from top we need cost as 0
+why dp[0],dp[1] in the solution?
+bcz we can either start at 0 or 1 so 
+
+
