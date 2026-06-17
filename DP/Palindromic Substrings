@@ -1,0 +1,27 @@
+class Solution {
+    public int countSubstrings(String s) {
+        int a = 0;
+        for(int i=0;i<s.length();i++){
+            int l = i;
+            int r = i;
+            while (l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                l--;
+                r++;
+                a += 1;
+            }
+            l = i;
+            r = i+1;
+            while(l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                l--;
+                r++;
+                a += 1;
+            }
+        }
+        return a;       
+    }
+}
+
+Idea is simple 
+if given string is plaindrom expand it around it 
+I will confess i got i,i and i,i+1 idea from youtube so 
+A tricky problem
